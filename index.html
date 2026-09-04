@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thirachet Shop - ร้านค้าออนไลน์ของคนรุ่นใหม่</title>
+    <style>
+        /* --- ตั้งค่าพื้นฐาน (Reset & Fonts) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Kanit';
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* --- ส่วนหัวเว็บ (Header) --- */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #ff9f43;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff9f43;
+        }
+
+        /* --- ป้ายโฆษณาหลัก (Hero Section) --- */
+        .hero {
+            background: #eef2f3;
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .btn-shop {
+            background-color: #ff9f43;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(255, 159, 67, 0.4);
+            transition: transform 0.2s, background-color 0.3s;
+            display: inline-block;
+        }
+
+        .btn-shop:hover {
+            background-color: #f39c12;
+            transform: translateY(-2px);
+        }
+
+        /* --- โซนสินค้า (Main Content) --- */
+        .main-container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #1e3c72;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #ff9f43;
+            border-radius: 2px;
+        }
+
+        /* --- กล่องแสดงสินค้าตาราง (Product Grid) --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* ภาพจำลองสินค้าพื้นหลังเทา */
+        .product-image {
+            width: 100%;
+            height: 220px;
+            background-color: #eaeff2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #7f8c8d;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: #95a5a6;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-price {
+            font-size: 20px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 15px;
+            margin-top: auto;
+        }
+
+        .btn-add-cart {
+            background-color: #1e3c72;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            width: 100%;
+        }
+
+        .btn-add-cart:hover {
+            background-color: #2a5298;
+        }
+
+        /* --- ส่วนท้ายเว็บ (Footer) --- */
+        footer {
+            background-color: #2c3e50;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin-bottom: 5px;
+        }
+
+        /* --- รองรับหน้าจอมือถือ (Responsive) --- */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ส่วนหัวและเมนู -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Thirachet <span>Shop</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">หน้าแรก</a></li>
+                    <li><a href="#">สินค้าทั้งหมด</a></li>
+                    <li><a href="#">โปรโมชั่น</a></li>
+                    <li><a href="#">ติดต่อเรา</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ป้ายโฆษณาต้อนรับ -->
+    <section class="hero">
+        <h1>ยินดีต้อนรับสู่ Thirachet Shop</h1>
+        <p>แหล่งรวมสินค้าออนไลน์คุณภาพเยี่ยม ราคาสบายกระเป๋า พร้อมส่งตรงถึงหน้าบ้านคุณ</p>
+        <a href="#products" class="btn-shop">ช้อปเลยตอนนี้</a>
+    </section>
+
+    <!-- พื้นที่แสดงสินค้า -->
+    <main class="main-container" id="products">
+        <h2 class="section-title">สินค้าแนะนำ</h2>
+        
+        <div class="product-grid">
+            
+            <!-- สินค้าชิ้นที่ 1 -->
+            <div class="product-card">
+                <div class="product-image">ภาพสินค้า 1 (900x900)</div>
+                <div class="product-info">
+                    <span class="product-category">Gadget & IT</span>
+                    <div class="product-name">หูฟังไร้สายโปร True Sound</div>
+                    <div class="product-price">฿1,590</div>
+                    <button class="btn-add-cart">เพิ่มลงตะกร้า</button>
+                </div>
+            </div>
+
+            <!-- สินค้าชิ้นที่ 2 -->
+            <div class="product-card">
+                <div class="product-image">ภาพสินค้า 2 (900x900)</div>
+                <div class="product-info">
+                    <span class="product-category">Fashion</span>
+                    <div class="product-name">เสื้อแจ็คเก็ตกันลม สไตล์มินิมอล</div>
+                    <div class="product-price">฿890</div>
+                    <button class="btn-add-cart">เพิ่มลงตะกร้า</button>
+                </div>
+            </div>
+
+            <!-- สินค้าชิ้นที่ 3 -->
+            <div class="product-card">
+                <div class="product-image">ภาพสินค้า 3 (900x900)</div>
+                <div class="product-info">
+                    <span class="product-category">Lifestyle</span>
+                    <div class="product-name">กระบอกน้ำเก็บอุณหภูมิ 1 ลิตร</div>
+                    <div class="product-price">฿450</div>
+                    <button class="btn-add-cart">เพิ่มลงตะกร้า</button>
+                </div>
+            </div>
+
+            <!-- สินค้าชิ้นที่ 4 -->
+            <div class="product-card">
+                <div class="product-image">ภาพสินค้า 4 (900x900)</div>
+                <div class="product-info">
+                    <span class="product-category">Gadget & IT</span>
+                    <div class="product-name">พาวเวอร์แบงค์ชาร์จเร็ว 20,000 mAh</div>
+                    <div class="product-price">฿690</div>
+                    <button class="btn-add-cart">เพิ่มลงตะกร้า</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ส่วนท้ายของเว็บ -->
+    <footer>
+        <p>&copy; 2026 Thirachet Shop. All Rights Reserved.</p>
+        <p>พัฒนารูปแบบเว็บเพจด้วย HTML และ CSS ในไฟล์เดียว</p>
+    </footer>
+
+</body>
+</html>
